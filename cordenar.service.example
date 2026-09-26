@@ -1,0 +1,19 @@
+[Unit]
+Description=Cordenar MCP Server
+After=network.target
+
+[Service]
+Type=simple
+# Install: npm install -g cordenar
+# Then run: which cordenar to get the absolute path for ExecStart=
+ExecStart=/usr/local/bin/cordenar
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# User-level systemd (~/.config/systemd/user/):
+# ExecStart=%h/.nvm/versions/node/*/bin/cordenar
+
+[Install]
+WantedBy=default.target

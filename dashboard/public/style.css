@@ -1,0 +1,52 @@
+/* Cordenar — Tailwind + Basecoat dashboard */
+/* Visual treatment via Tailwind utilities. CSS only for what TW can't express. */
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+
+/* Native select — explicit bg + dark mode dropdown */
+select {
+  color-scheme: light;
+  background-color: var(--background);
+}
+.dark select {
+  color-scheme: dark;
+}
+
+/* Project picker — custom combobox widget */
+.project-picker { position: relative; }
+.project-picker-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: var(--popover); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); max-height: 200px; overflow-y: auto; z-index: 100; display: none; }
+.project-picker-dropdown.open { display: block; }
+.project-picker-option { padding: 6px 10px; cursor: pointer; color: var(--foreground); font-size: 13px; }
+.project-picker-option:hover, .project-picker-option.highlight { background: var(--accent); }
+.project-picker-empty { padding: 6px 10px; color: var(--muted-foreground); font-size: 13px; font-style: italic; }
+
+.empty { text-align: center; padding: 3rem 1rem; color: var(--muted-foreground); font-size: 14px; }
+
+
+
+dialog::backdrop { background: rgba(0, 0, 0, 0.1); backdrop-filter: blur(4px); }
+
+/* Sticky actions column */
+#table-wrap th:last-child,
+#table-wrap td:last-child { position: sticky; right: 0; background: var(--card); box-shadow: -4px 0 8px -4px rgba(0,0,0,0.15); z-index: 1; }
+.dark #table-wrap th:last-child,
+.dark #table-wrap td:last-child { box-shadow: -4px 0 8px -4px rgba(255,255,255,0.06); }
+
+/* Skeleton — shimmer animation */
+#loading-skeleton table { width: 100%; border-collapse: collapse; }
+#loading-skeleton th { text-align: left; padding: 8px 12px; font-size: 12px; text-transform: uppercase; color: var(--foreground); letter-spacing: .5px; border-bottom: 1px solid var(--border); font-weight: 500; background: var(--accent); }
+.skeleton-row td { padding: 10px 12px; }
+.skeleton-cell { height: 14px; border-radius: 4px; background: linear-gradient(90deg, var(--accent) 25%, color-mix(in srgb, var(--accent) 140%, var(--foreground)) 50%, var(--accent) 75%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; }
+.skeleton-cell.tiny { width: 20%; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Toasts — fixed positioning + keyframe animation */
+#toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 10000; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+.toast { pointer-events: auto; display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 6px; font-size: 13px; line-height: 1.4; background: color-mix(in srgb, var(--accent) 90%, var(--foreground)); border: 1px solid var(--border); color: var(--foreground); box-shadow: 0 4px 12px rgba(0,0,0,.3); animation: toast-in .25s ease-out; min-width: 240px; max-width: 400px; }
+.toast.removing { animation: toast-out .2s ease-in forwards; }
+.toast-success { border-left: 3px solid var(--primary); }
+.toast-error { border-left: 3px solid var(--destructive); }
+.toast-info { border-left: 3px solid var(--ring); }
+.toast-warning { border-left: 3px solid #eab308; }
+@keyframes toast-in { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes toast-out { from { transform: translateY(0); opacity: 1; } to { transform: translateY(20px); opacity: 0; } }

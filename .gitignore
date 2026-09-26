@@ -1,0 +1,12 @@
+node_modules/
+.github/
+.opencode/
+*.db
+*.db-wal
+*.db-shm
+.env
+.env.*
+.DS_Store
+PROJECT.md
+cordenar-mcp.service
+cordenar.service

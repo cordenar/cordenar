@@ -1,0 +1,13 @@
+.env*
+*.db
+*.db-wal
+*.db-shm
+.github/
+test/
+vitest.config.js
+cordenar.service
+opencode.json
+PROJECT.md
+node_modules/
+.DS_Store
+package-lock.json

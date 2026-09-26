@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cordenar</title>
+<meta name="description" content="Cordenar MCP dashboard">
+<link rel="stylesheet" href="/basecoat-base.min.css">
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<script src="/tailwind-v4.js"></script>
+<style type="text/tailwindcss">
+  @custom-variant dark (&:where(.dark, .dark *));
+  @layer base {
+    *, ::after, ::before, ::backdrop, ::file-selector-button {
+      border-color: var(--border);
+    }
+  }
+  @theme {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+  }
+</style>
+<script src="/basecoat-all.min.js" defer></script>
+</head>
+<body>
+<div id="app">
+
+<header class="px-5 py-3 border-b border-border mb-4">
+  <div class="flex items-center justify-between">
+    <div>
+      <div class="flex items-center gap-4"><svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28" fill="currentColor" aria-hidden="true"><path d="M480-60q-50 0-85-35t-35-85q0-39 22.5-70t57.5-43v-73q-11-4-21-9.5T401-389l-63 37q1 5 1.5 10.5t.5 11.5q0 50-35 85t-85 35q-50 0-85-35t-35-85q0-50 35-85t85-35q23 0 43 7.5t36 21.5l62-36q-1-5-1.5-11t-.5-12q0-6 .5-11.5T361-502l-62-37q-16 14-36 21.5t-43 7.5q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 6-.5 12t-1.5 11l63 36q8-8 18-13t21-9v-73q-35-12-57.5-43.5T360-780q0-50 35-85t85-35q50 0 85 35t35 85q0 39-22.5 70.5T520-666v73q11 4 20.5 9.5T558-570l64-38q-1-5-1.5-10.5T620-630q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-23 0-42.5-7.5T662-539l-65 38q1 5 1.5 10.5t.5 10.5q0 5-.5 11t-1.5 11l65 37q16-14 35.5-21.5T740-450q50 0 85 35t35 85q0 50-35 85t-85 35q-50 0-85-35t-35-85q0-6 .5-11.5T622-352l-64-37q-8 8-17.5 13t-20.5 9v74q35 12 57.5 43t22.5 70q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-180q0-17-11.5-28.5T480-220q-17 0-28.5 11.5T440-180q0 17 11.5 28.5T480-140ZM220-290q17 0 28.5-11.5T260-330q0-17-11.5-28.5T220-370q-17 0-28.5 11.5T180-330q0 17 11.5 28.5T220-290Zm520 0q17 0 28.5-11.5T780-330q0-17-11.5-28.5T740-370q-17 0-28.5 11.5T700-330q0 17 11.5 28.5T740-290ZM480-440q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440ZM220-590q17 0 28.5-11.5T260-630q0-17-11.5-28.5T220-670q-17 0-28.5 11.5T180-630q0 17 11.5 28.5T220-590Zm520 0q17 0 28.5-11.5T780-630q0-17-11.5-28.5T740-670q-17 0-28.5 11.5T700-630q0 17 11.5 28.5T740-590ZM480-740q17 0 28.5-11.5T520-780q0-17-11.5-28.5T480-820q-17 0-28.5 11.5T440-780q0 17 11.5 28.5T480-740Z"/></svg><h1 class="text-lg font-semibold">Cordenar</h1><p class="text-base text-muted-foreground leading-tight">The shared brain for teams of humans and AI</p></div>
+          </div>
+    <div class="flex items-center gap-3">
+      <button id="theme-btn" class="bg-transparent border-0 text-foreground cursor-pointer p-1 rounded-full hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none" aria-label="Toggle theme">
+        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
+        <svg id="theme-icon-sun" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-4xl mx-auto px-5">
+<div id="stats-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 hidden">
+  <div class="rounded-xl bg-card text-card-foreground py-3 px-4 ring-1 ring-foreground/10">
+    <div class="text-sm font-medium text-muted-foreground">Synapses</div>
+    <div id="stat-total" class="text-3xl font-bold">—</div>
+    <div id="stat-sources" class="text-sm text-muted-foreground mt-1">—</div>
+  </div>
+  <div class="rounded-xl bg-card text-card-foreground py-3 px-4 ring-1 ring-foreground/10">
+    <div class="text-sm font-medium text-muted-foreground">Tools</div>
+    <div id="stat-tool-detail" class="text-sm text-muted-foreground mb-3">—</div>
+      <button id="view-leaderboard" class="inline-flex items-center gap-1.5 rounded-full border border-input px-2.5 py-1.5 text-sm font-medium text-foreground cursor-pointer transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">View Leaderboard</button>
+  </div>
+  <div id="stat-env-local" class="rounded-xl bg-card text-card-foreground py-3 px-4 ring-1 ring-foreground/10 hidden">
+    <div class="text-sm font-medium text-muted-foreground">Local</div>
+    <div class="text-sm text-muted-foreground mb-3">Data is stored locally on this machine.</div>
+    <a href="https://cordenar.cloud" target="_blank" rel="noopener" class="text-xs text-primary hover:underline">Open Cloud ↗</a>
+  </div>
+  <div id="stat-env-cloud" class="rounded-xl bg-card text-card-foreground py-3 px-4 ring-1 ring-foreground/10 hidden">
+    <div class="text-sm font-medium text-muted-foreground">Cloud</div>
+    <div id="stat-sync-detail" class="text-sm text-muted-foreground mb-3">—</div>
+    <div class="flex items-center gap-2">
+      <button id="sync-now" class="inline-flex items-center gap-1.5 rounded-full border border-input px-2.5 py-1.5 text-sm font-medium text-foreground cursor-pointer transition-colors hover:bg-accent select-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">Sync Cloud <span id="sync-dot-card" class="w-2 h-2 rounded-full inline-block" style="background: #4caf50;"></span></button>
+      <a href="https://cordenar.cloud" target="_blank" rel="noopener" class="text-xs text-primary hover:underline">Open Cloud ↗</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="filters mb-3" role="search" aria-label="Filter synapses">
+  <div class="flex items-center gap-3 flex-wrap">
+    <div class="flex rounded-full border border-input overflow-hidden">
+      <button id="scope-all" class="px-3 py-1 text-xs font-medium bg-accent text-accent-foreground cursor-pointer transition-colors border-0 outline-none" data-scope="all">All</button>
+      <button id="scope-local" class="px-3 py-1 text-xs font-medium bg-transparent text-muted-foreground cursor-pointer transition-colors border-0 border-l border-input outline-none hover:bg-accent/50" data-scope="local">Local</button>
+      <button id="scope-team" class="px-3 py-1 text-xs font-medium bg-transparent text-muted-foreground cursor-pointer transition-colors border-0 border-l border-input outline-none hover:bg-accent/50" data-scope="team">Cloud</button>
+    </div>
+    <div class="relative flex-1 min-w-[120px]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+      <input id="search" class="h-8 w-full min-w-0 rounded-full border border-input bg-transparent pl-8 pr-2.5 py-1 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:text-sm" placeholder="Search synapses..." autocomplete="off" aria-label="Search synapses" role="searchbox">
+    </div>
+    <select id="source" class="h-8 min-w-[120px] rounded-lg border border-input bg-transparent px-2.5 py-2 text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 flex-1"><option value="" selected>Synapses</option><option value="memory">Memories</option><option value="concept">Concepts</option></select>
+    <select id="status" class="h-8 min-w-[120px] rounded-lg border border-input bg-transparent px-2.5 py-2 text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 flex-1"><option value="" selected>Lifecycle</option><option value="unshared">Unshared</option><option value="shared">Shared</option><option value="pulled">Pulled</option></select>
+  </div>
+</div>
+
+<div id="filters-memory" class="flex items-center gap-3 flex-wrap mb-3 hidden" role="search" aria-label="Memory filters">
+  <div class="project-picker relative flex-1 min-w-[120px]">
+    <input id="mem-project" class="h-8 w-full min-w-0 rounded-lg border border-input bg-transparent pl-2.5 pr-8 py-1 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:text-sm" placeholder="Project..." autocomplete="off" role="combobox" aria-expanded="false" aria-controls="mem-project-dropdown" aria-autocomplete="list">
+    <button type="button" id="mem-project-clear" class="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground hidden" aria-label="Clear project">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="project-picker-dropdown" id="mem-project-dropdown" role="listbox" aria-label="Available projects"></div>
+  </div>
+  <select id="mem-kind" class="h-8 min-w-[120px] rounded-lg border border-input bg-transparent px-2.5 py-2 text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 flex-1"><option value="" selected>Kinds</option><option value="fact">fact</option><option value="decision">decision</option><option value="bug">bug</option><option value="plan">plan</option><option value="note">note</option><option value="progressive_summary">summary</option><option value="insight">insight</option></select>
+  <select id="mem-status-ctx" class="h-8 min-w-[120px] rounded-lg border border-input bg-transparent px-2.5 py-2 text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 flex-1"><option value="" selected>Status</option><option value="proposed">proposed</option><option value="open">open</option><option value="in_progress">in_progress</option><option value="pending">pending</option><option value="approved">approved</option><option value="implemented">implemented</option><option value="fixed">fixed</option><option value="completed">completed</option><option value="rejected">rejected</option><option value="superseded">superseded</option><option value="wont_fix">wont_fix</option><option value="cant_repro">cant_repro</option><option value="cancelled">cancelled</option></select>
+  <select id="mem-lifecycle" class="h-8 min-w-[120px] rounded-lg border border-input bg-transparent px-2.5 py-2 text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 flex-1"><option value="active" selected>Active</option><option value="archived">Archived</option><option value="trash">Trash</option></select>
+</div>
+
+<div id="filters-concept" class="flex items-center gap-3 flex-wrap mb-3 hidden" role="search" aria-label="Concept filters">
+  <div class="project-picker relative flex-1 min-w-[120px]">
+    <input id="con-collection" class="h-8 w-full min-w-0 rounded-lg border border-input bg-transparent pl-2.5 pr-8 py-1 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:text-sm" placeholder="Collection..." autocomplete="off" role="combobox" aria-expanded="false" aria-controls="con-collection-dropdown" aria-autocomplete="list">
+    <button type="button" id="con-collection-clear" class="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground hidden" aria-label="Clear collection">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="project-picker-dropdown" id="con-collection-dropdown" role="listbox" aria-label="Available collections"></div>
+  </div>
+  <select id="con-type" class="h-8 min-w-[120px] rounded-lg border border-input bg-transparent px-2.5 py-2 text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 flex-1"><option value="" selected>Types</option><option value="skill">skill</option><option value="agent">agent</option><option value="instruction">instruction</option><option value="prompt">prompt</option><option value="workflow">workflow</option><option value="reference">reference</option><option value="knowledge">knowledge</option></select>
+  <select id="con-status-ctx" class="h-8 min-w-[120px] rounded-lg border border-input bg-transparent px-2.5 py-2 text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 flex-1"><option value="" selected>Lifecycle</option><option value="stable">stable</option><option value="draft">draft</option><option value="deprecated">deprecated</option></select>
+</div>
+
+<div id="error" class="hidden bg-destructive/10 text-foreground py-2 px-3 rounded mb-2 text-[13px]" role="alert" aria-live="assertive"></div>
+
+<div id="loading-skeleton" class="hidden" aria-hidden="true">
+  <table aria-hidden="true">
+    <thead><tr><th>Source</th><th>Type</th><th>Preview</th><th>Status</th><th>Time</th><th></th></tr></thead>
+    <tbody id="skeleton-body"></tbody>
+  </table>
+</div>
+
+<div id="table-wrap" class="flex flex-col gap-4 rounded-xl bg-card py-4 text-sm text-card-foreground ring-1 ring-foreground/10">
+  <div id="stats" class="text-xs text-muted-foreground px-4" role="status" aria-live="polite">Loading...</div>
+  <div class="relative w-full overflow-x-auto">
+    <table class="table w-full caption-bottom text-sm [&amp;_td]:align-top" aria-label="Synapses list">
+      <thead id="thead-all">
+        <tr><th class="h-10 px-2 text-left font-medium">Source</th><th class="h-10 px-2 text-left font-medium">Title/Summary</th><th class="h-10 px-2 text-left font-medium">Category</th><th class="h-10 px-2 text-left font-medium" title="Status">Status</th><th class="h-10 px-2 text-left font-medium" title="Cloud">Cloud</th><th class="h-10 px-2 text-left font-medium">Time</th><th class="h-10 px-2 text-left font-medium"><span class="sr-only">Actions</span></th></tr>
+      </thead>
+      <thead id="thead-memory" class="hidden">
+        <tr><th class="h-10 px-2 text-left font-medium">Content</th><th class="h-10 px-2 text-left font-medium">Kind</th><th class="h-10 px-2 text-left font-medium">Project</th><th class="h-10 px-2 text-left font-medium">Related</th><th class="h-10 px-2 text-left font-medium" title="Status">Status</th><th class="h-10 px-2 text-left font-medium" title="Cloud">Cloud</th><th class="h-10 px-2 text-left font-medium">Time</th><th class="h-10 px-2 text-left font-medium">ID</th><th class="h-10 px-2 text-left font-medium"><span class="sr-only">Actions</span></th></tr>
+      </thead>
+        <thead id="thead-concept" class="hidden">
+        <tr><th class="h-10 px-2 text-left font-medium">Title</th><th class="h-10 px-2 text-left font-medium">Type</th><th class="h-10 px-2 text-left font-medium">Collection</th><th class="h-10 px-2 text-left font-medium">Description</th><th class="h-10 px-2 text-left font-medium">Tags</th><th class="h-10 px-2 text-left font-medium" title="Lifecycle">Lifecycle</th><th class="h-10 px-2 text-left font-medium" title="Cloud">Cloud</th><th class="h-10 px-2 text-left font-medium">Updated</th><th class="h-10 px-2 text-left font-medium"><span class="sr-only">Actions</span></th></tr>
+      </thead>
+      <tbody id="tbody" aria-live="polite" aria-relevant="additions removals"></tbody>
+    </table>
+  </div>
+</div>
+
+<div id="pagination" class="flex justify-center items-center gap-2 py-3 text-[13px]" role="navigation" aria-label="Pagination"></div>
+
+<div id="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<dialog id="confirm-dialog" class="bg-background text-foreground border border-border rounded-lg p-0 max-w-[380px] w-full shadow-2xl m-auto">
+  <div class="p-6">
+    <p id="confirm-message" class="text-sm mb-5 leading-relaxed"></p>
+    <div class="flex justify-end gap-2">
+      <button id="confirm-cancel" class="py-1.5 px-4 rounded text-[13px] cursor-pointer border border-border bg-accent text-foreground hover:bg-muted">Cancel</button>
+      <button id="confirm-ok" class="py-1.5 px-4 rounded text-[13px] cursor-pointer border border-destructive/40 bg-destructive/20 text-destructive hover:bg-destructive/35">Delete</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="preview-dialog" class="bg-background text-foreground border border-border rounded-xl shadow-lg w-full max-w-[min(90vw,42rem)] p-0 m-auto" onclick="if (event.target === this) this.close()">
+  <div class="max-h-[85vh] p-4 flex flex-col overflow-hidden">
+    <header class="flex-shrink-0">
+      <div id="preview-meta" class="flex items-center gap-0.5 mb-1 text-xs flex-wrap"></div>
+      <div class="border-t pt-2 mt-2"></div>
+      <div class="flex items-center gap-1 border-b pb-2 mb-2">
+        <button id="preview-back" class="inline-flex items-center justify-center h-7 w-7 rounded-full hover:bg-accent disabled:opacity-30 disabled:cursor-default" disabled aria-label="Go back"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button id="preview-forward" class="inline-flex items-center justify-center h-7 w-7 rounded-full hover:bg-accent disabled:opacity-30 disabled:cursor-default" disabled aria-label="Go forward"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+        <select id="preview-relby-select" disabled class="preview-rel-select bg-transparent border border-border rounded-full text-xs text-foreground disabled:text-muted-foreground px-2.5 py-1 focus:outline-none focus:border-primary max-w-[160px] truncate"><option value="" disabled selected>Ancestors</option></select>
+        <select id="preview-siblings-select" disabled class="preview-rel-select bg-transparent border border-border rounded-full text-xs text-foreground disabled:text-muted-foreground px-2.5 py-1 focus:outline-none focus:border-primary max-w-[160px] truncate"><option value="" disabled selected>Siblings</option></select>
+        <select id="preview-related-select" disabled class="preview-rel-select bg-transparent border border-border rounded-full text-xs text-foreground disabled:text-muted-foreground px-2.5 py-1 focus:outline-none focus:border-primary max-w-[160px] truncate"><option value="" disabled selected>Descendants</option></select>
+      </div>
+    </header>
+    <section class="-mx-4 overflow-y-auto flex-1 min-h-0 px-4">
+      <div id="preview-loading" class="text-sm text-muted-foreground py-8 text-center hidden">Loading...</div>
+      <div id="preview-body" class="markdown-body text-sm leading-relaxed text-foreground/90 space-y-3 [&_h1]:text-xl [&_h1]:font-bold [&_h1]:mt-4 [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mt-3 [&_h3]:text-base [&_h3]:font-medium [&_p]:my-2 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:my-1 [&_code]:bg-accent [&_code]:px-1 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-xs [&_code]:font-mono [&_pre]:bg-accent [&_pre]:p-3 [&_pre]:rounded-lg [&_pre]:overflow-x-auto [&_pre]:text-xs [&_blockquote]:border-l-2 [&_blockquote]:border-primary/30 [&_blockquote]:pl-3 [&_blockquote]:italic [&_table]:w-full [&_table]:border-collapse [&_table]:text-xs [&_th]:border [&_th]:border-border [&_th]:p-2 [&_th]:bg-accent/50 [&_td]:border [&_td]:border-border [&_td]:p-2 [&_hr]:my-4 [&_hr]:border-border [&_strong]:font-semibold [&_em]:italic [&_.link-ref]:underline [&_.link-ref]:decoration-dotted [&_.link-ref]:text-foreground/60"></div>
+    </section>
+    <footer class="-mx-4 -mb-4 flex-shrink-0 flex justify-end gap-2 rounded-b-xl border-t bg-muted/50 p-4">
+      <select id="preview-team-select" class="bg-transparent border border-border rounded-full text-xs text-foreground disabled:text-muted-foreground px-2.5 py-1 focus:outline-none focus:border-primary max-w-[140px] truncate !hidden">
+      </select>
+      <button id="preview-share" class="inline-flex items-center justify-center rounded-full border border-input bg-background hover:bg-accent px-4 py-2 text-sm font-medium focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none" hidden>Share</button>
+    </footer>
+    <button type="button" class="inline-flex items-center justify-center h-8 w-8 rounded-full hover:bg-accent absolute top-2 right-2" aria-label="Close" onclick="this.closest('dialog').close()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+</dialog>
+
+<dialog id="leaderboard-dialog" class="bg-background text-foreground border border-border rounded-xl shadow-lg w-full max-w-[min(90vw,42rem)] p-0 m-auto" onclick="if (event.target === this) this.close()">
+  <div class="p-6">
+    <header class="flex items-center justify-between mb-4">
+      <h2 class="text-base font-semibold">Leaderboard</h2>
+      <div id="leaderboard-pills" class="flex rounded-full border border-input overflow-hidden">
+        <button data-period="24h" class="px-2.5 py-0.5 text-xs font-medium bg-transparent text-muted-foreground cursor-pointer transition-colors border-0 outline-none hover:bg-accent/50">24h</button>
+        <button data-period="7d" class="px-2.5 py-0.5 text-xs font-medium bg-accent text-accent-foreground cursor-pointer transition-colors border-0 border-l border-input outline-none">7d</button>
+        <button data-period="30d" class="px-2.5 py-0.5 text-xs font-medium bg-transparent text-muted-foreground cursor-pointer transition-colors border-0 border-l border-input outline-none hover:bg-accent/50">30d</button>
+        <button data-period="all" class="px-2.5 py-0.5 text-xs font-medium bg-transparent text-muted-foreground cursor-pointer transition-colors border-0 border-l border-input outline-none hover:bg-accent/50">All</button>
+      </div>
+    </header>
+    <div id="leaderboard-loading" class="text-sm text-muted-foreground py-8 text-center">Loading...</div>
+    <section id="leaderboard-body">
+    </section>
+    <button type="button" class="inline-flex items-center justify-center h-8 w-8 rounded-full hover:bg-accent absolute top-2 right-2" aria-label="Close" onclick="this.closest('dialog').close()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+</dialog>
+
+<script>(function(){var t=localStorage.getItem('cordenar-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}})()</script>
+<script type="module" src="/src/main.js"></script>
+</main>
+</div>
+</body>
+</html>

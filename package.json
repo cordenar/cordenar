@@ -1,0 +1,75 @@
+{
+  "name": "cordenar",
+  "version": "1.0.0",
+  "description": "The shared brain for teams of humans and AI",
+  "author": "Hector Jarquin",
+  "type": "module",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "cordenar": "index.js",
+    "cordenar-dashboard": "dashboard.js"
+  },
+  "scripts": {
+    "start": "node dashboard.js",
+    "stop": "node dashboard.js stop",
+    "restart": "node dashboard.js restart",
+    "test": "vitest run",
+    "backfill-embeddings": "node scripts/backfill-embeddings.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cordenar/cordenar.git"
+  },
+  "homepage": "https://cordenar.com",
+  "bugs": {
+    "url": "https://github.com/cordenar/cordenar/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "mcp",
+    "memory",
+    "knowledge",
+    "ai",
+    "sqlite",
+    "vector-search",
+    "full-text-search",
+    "supabase"
+  ],
+  "files": [
+    "index.js",
+    "dashboard.js",
+    "server.js",
+    "db.js",
+    "sync.js",
+    "auth.js",
+    "supabase.js",
+    "config.js",
+    "embedding.js",
+    "hash.js",
+    "otel.js",
+    "CORDENAR.md",
+    "dashboard/",
+    "scripts/",
+    "logo.svg",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0",
+    "@opentelemetry/api": "^1.9.1",
+    "@opentelemetry/resources": "^2.10.0",
+    "@opentelemetry/sdk-trace-base": "^2.10.0",
+    "@supabase/supabase-js": "^2.0.0",
+    "better-sqlite3": "^11.0.0",
+    "js-yaml": "^5.2.2",
+    "marked": "^18.0.7",
+    "sqlite-vec": "^0.1.9",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "^2.0.0",
+    "vitest": "^4.1.10"
+  }
+}
