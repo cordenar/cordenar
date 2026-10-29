@@ -5,6 +5,21 @@ All notable changes to Cordenar are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-10-29
+
+### Added
+
+- **`cordenar` CLI dispatcher** — a single `cordenar` command with subcommands: bare `cordenar` runs the MCP server, `cordenar dashboard` starts the dashboard and opens it in the browser, plus `--help` and `--version`.
+- **Dashboard status line** — `cordenar dashboard` prints memory and concept counts on startup; `/health` now reports `memories` and `concepts`.
+
+### Fixed
+
+- **MCP stdio stdout pollution** — removed a `console.log` from `initDb()` that wrote a non-JSON line to the MCP server's stdout channel; counts are now exposed via a pure `getCounts()`.
+
+### Deprecated
+
+- **`cordenar-dashboard`** — superseded by `cordenar dashboard`; still works but will be removed in 2.0.0.
+
 ## [1.0.0] - 2026-09-25
 
 First public release.

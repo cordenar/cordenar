@@ -4,15 +4,30 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execSync } from 'node:child_process';
-import { initDb } from './db.js';
+import { execSync, spawn } from 'node:child_process';
+import { initDb, getCounts } from './db.js';
 import { getConfig, getDbPath } from './config.js';
 import { createApiHandler, err } from './dashboard/api-handler.js';
 import { fullSync } from './sync.js';
 import { initTelemetry, getTracer, forceFlushTelemetry, SpanKind, SpanStatusCode } from './otel.js';
 
 const arg = process.argv[2] || 'start';
+const OPEN = process.argv.includes('--open');
 const PORT = getConfig().port;
+
+function openBrowser(url) {
+  try {
+    const isWin = process.platform === 'win32';
+    const isMac = process.platform === 'darwin';
+    const cmd = isWin ? 'cmd' : isMac ? 'open' : 'xdg-open';
+    const args = isWin ? ['/c', 'start', '', url] : [url];
+    const child = spawn(cmd, args, { detached: true, stdio: 'ignore' });
+    child.on('error', () => {});
+    child.unref();
+  } catch (e) {
+    console.error('[cordenar] failed to open browser:', e.message);
+  }
+}
 
 function killOnPort(port) {
   try {
@@ -91,6 +106,7 @@ const server = http.createServer(async (req, res) => {
 
   if (pathname === '/health' && req.method === 'GET') {
     const cfg = getConfig();
+    const counts = getCounts();
     const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf-8'));
     const dbSize = fs.statSync(getDbPath()).size;
     const backupDir = cfg.backup?.dir || path.join(getDbPath(), '..', 'backups');
@@ -105,6 +121,8 @@ const server = http.createServer(async (req, res) => {
       status: 'ok',
       version: pkg.version,
       uptime: Math.floor(process.uptime()),
+      memories: counts.memories,
+      concepts: counts.concepts,
       db_size: dbSize,
       backup_count: backupCount,
       last_backup: lastBackup,
@@ -285,7 +303,9 @@ process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
 
 server.listen(PORT, '127.0.0.1', () => {
-  console.log('\nCordenar Dashboard \u2192 http://localhost:' + PORT + '\n');
+  const counts = getCounts();
+  console.log('Cordenar — memories: ' + counts.memories + ' · concepts: ' + counts.concepts + ' → http://localhost:' + PORT);
+  if (OPEN) openBrowser('http://localhost:' + PORT);
 
   const manifestPath = getConfig().manifestPath;
   try {
@@ -297,7 +317,7 @@ server.listen(PORT, '127.0.0.1', () => {
 });
 server.on('error', (e) => {
   if (e.code === 'EADDRINUSE') {
-    console.error('Port ' + PORT + ' is in use. Run "cordenar stop" first.');
+    console.error('Port ' + PORT + ' is in use — is the dashboard already running in another terminal? (Ctrl+C there, or run cordenar-dashboard stop.)');
     process.exit(1);
   }
   throw e;

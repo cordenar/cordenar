@@ -40,20 +40,23 @@ Requires **Node.js ≥ 22**.
 npm install -g cordenar
 ```
 
-Start the dashboard:
+Start the dashboard (runs in the foreground; press Ctrl+C to stop):
 
 ```bash
-cordenar-dashboard
-# → http://localhost:3458
+cordenar dashboard
+# → Cordenar — memories: 123 · concepts: 45 → http://localhost:3458
 ```
 
 CLI:
 
 ```bash
-cordenar-dashboard              # Start the dashboard
-cordenar-dashboard stop         # Stop a running instance
-cordenar-dashboard restart      # Stop then restart
+cordenar                  # Run the MCP server (launched by your MCP host)
+cordenar dashboard        # Start the dashboard and open it in your browser
+cordenar --help           # Show usage
+cordenar --version        # Print the version
 ```
+
+> **Deprecated:** `cordenar-dashboard` still works (`start`/`stop`/`restart`) but is deprecated in favor of `cordenar dashboard` and will be removed in 2.0.0.
 
 ## MCP Server Setup
 

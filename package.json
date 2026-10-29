@@ -1,13 +1,13 @@
 {
   "name": "cordenar",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The shared brain for teams of humans and AI",
   "author": "Hector Jarquin",
   "type": "module",
   "license": "MIT",
   "main": "index.js",
   "bin": {
-    "cordenar": "index.js",
+    "cordenar": "cli.js",
     "cordenar-dashboard": "dashboard.js"
   },
   "scripts": {
@@ -40,6 +40,7 @@
   ],
   "files": [
     "index.js",
+    "cli.js",
     "dashboard.js",
     "server.js",
     "db.js",

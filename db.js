@@ -12,6 +12,16 @@ import { load as yamlLoad, JSON_SCHEMA } from 'js-yaml';
 
 let db;
 
+export function getCounts() {
+  const d = initDb();
+  return {
+    memories: d.prepare('SELECT COUNT(*) as c FROM memories').get().c,
+    concepts: d.prepare('SELECT COUNT(*) as c FROM concepts').get().c,
+    memory_synapses: d.prepare('SELECT COUNT(*) as c FROM memory_synapses').get().c,
+    concept_synapses: d.prepare('SELECT COUNT(*) as c FROM concept_synapses').get().c,
+  };
+}
+
 export function initDb() {
   if (db) return db;
   const path = ensureDbDir();
@@ -44,21 +54,6 @@ export function initDb() {
     }
   } catch (err) {
     console.error('[cordenar] WARNING: integrity_check error:', err.message);
-  }
-
-  try {
-    const memoriesCount = db.prepare('SELECT COUNT(*) as c FROM memories').get().c;
-    const conceptsCount = db.prepare('SELECT COUNT(*) as c FROM concepts').get().c;
-    const memSynCount = db.prepare('SELECT COUNT(*) as c FROM memory_synapses').get().c;
-    const conSynCount = db.prepare('SELECT COUNT(*) as c FROM concept_synapses').get().c;
-    console.log(
-      '[cordenar] startup: memories=' + memoriesCount +
-      ' concepts=' + conceptsCount +
-      ' memory_synapses=' + memSynCount +
-      ' concept_synapses=' + conSynCount
-    );
-  } catch (err) {
-    console.error('[cordenar] WARNING: row count check error:', err.message);
   }
 
   const cfg = getConfig();
