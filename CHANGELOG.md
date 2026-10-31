@@ -5,6 +5,17 @@ All notable changes to Cordenar are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2026-10-31
+
+### Changed
+
+- **Documentation** — README MCP host examples no longer pin a specific version; `npx -y cordenar` resolves to `latest`. Deployment and developer docs now use the `cordenar dashboard` command and the `cordenar.service.example` template.
+- **Repository** — removed machine-specific `.gitignore` entries left over from private pre-release development.
+
+### Removed
+
+- `.npmignore` — the `package.json` `files` whitelist is now the single authoritative packaging spec.
+
 ## [1.1.0] - 2026-10-29
 
 ### Added
