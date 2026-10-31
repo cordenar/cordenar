@@ -1,17 +1,19 @@
 node_modules/
-.opencode/
+
+# Runtime data
 *.db
 *.db-wal
 *.db-shm
+
+# Secrets
 .env
 .env.*
-.DS_Store
-PROJECT.md
-cordenar-mcp.service
-cordenar.service
 
-# publish artifacts
+# OS
+.DS_Store
+
+# Publish artifacts
 *.tgz
-# local config
-opencode.json
-auth.json
+
+# Local systemd unit (copy from cordenar.service.example)
+cordenar.service
