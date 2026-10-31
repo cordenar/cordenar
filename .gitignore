@@ -1,5 +1,4 @@
 node_modules/
-.github/
 .opencode/
 *.db
 *.db-wal
@@ -10,3 +9,9 @@ node_modules/
 PROJECT.md
 cordenar-mcp.service
 cordenar.service
+
+# publish artifacts
+*.tgz
+# local config
+opencode.json
+auth.json
