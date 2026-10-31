@@ -15,7 +15,7 @@ Operational cross-cutting concerns, environment configuration, MCP conventions, 
 | Deliverable | Entry Point | Description |
 |---|---|---|
 | `cordenar` (MCP server) | `index.js` | MCP stdio server — 36 tools, local SQLite, cloud sync |
-| `cordenar-dashboard` (dashboard) | `dashboard.js` | HTTP web dashboard at `localhost:3458` |
+| `cordenar dashboard` (dashboard) | `dashboard.js` | HTTP web dashboard at `localhost:3458` |
 | `cordenar` (npm package) | `package.json` | `npm install -g cordenar` — both binaries in PATH |
 
 ## Environment Variables
@@ -120,7 +120,7 @@ The `_autonomy_rules` field injected into every `memory_brief` response directs 
 ```bash
 npm install                                  # install dependencies
 npm test                                     # run 104 tests (4 Cloud Tier 1 skipped)
-cordenar-dashboard                           # start dashboard at :3458
+cordenar dashboard                           # start dashboard at :3458
 ```
 
 ### Production
@@ -128,13 +128,13 @@ cordenar-dashboard                           # start dashboard at :3458
 ```bash
 npm install -g /path/to/cordenar             # global install from local source
 cordenar                                     # MCP server (via MCP host)
-cordenar-dashboard                           # dashboard (standalone)
+cordenar dashboard                           # dashboard (standalone)
 ```
 
 ### systemd (optional)
 
 ```bash
-cp cordenar.service ~/.config/systemd/user/
+cp cordenar.service.example cordenar.service
 systemctl --user daemon-reload
 systemctl --user enable cordenar
 systemctl --user start cordenar

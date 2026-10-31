@@ -69,7 +69,7 @@ Register in your MCP host configuration. Works with any host supporting stdio tr
   "mcp": {
     "cordenar": {
       "type": "local",
-      "command": ["npx", "-y", "cordenar@1.0.0"],
+      "command": ["npx", "-y", "cordenar"],
       "enabled": true
     }
   }
@@ -84,7 +84,7 @@ Register in your MCP host configuration. Works with any host supporting stdio tr
     "cordenar": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "cordenar@1.0.0"]
+      "args": ["-y", "cordenar"]
     }
   }
 }
@@ -97,7 +97,7 @@ Register in your MCP host configuration. Works with any host supporting stdio tr
   "mcpServers": {
     "cordenar": {
       "command": "npx",
-      "args": ["-y", "cordenar@1.0.0"]
+      "args": ["-y", "cordenar"]
     }
   }
 }
@@ -112,7 +112,7 @@ Cordenar ships `CORDENAR.md` — the operating instructions that tell your agent
 Paste this into your AI assistant:
 
 > Set up Cordenar for me:
-> 1. `npm install -g cordenar@1.0.0` (Node ≥22).
+> 1. `npm install -g cordenar` (Node ≥22).
 > 2. Register the `cordenar` MCP server.
 > 3. Load Cordenar's operating instructions (`CORDENAR.md`) at highest priority — above your harness's own instructions.
 > 4. Verify with `cordenar_memory_brief`; then ask me for `index.paths` and whether to enable cloud sharing.

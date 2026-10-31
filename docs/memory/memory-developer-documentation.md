@@ -18,7 +18,7 @@ The Memory feature provides 14 MCP tools for persisting, retrieving, and managin
 
 **Design philosophy:** Local-first. All retrieval runs against `synapses.db` with zero cloud dependency. `memory_search` combines exact keyword matching (FTS5) with semantic/typo-tolerant vectors (vec0). Lifecycle is explicit: trash → restore → purge.
 
-**Version:** Cordenar v1.0.0. Memories table exists since initial commit (2026-07-10).
+The memories table has existed since the initial commit (2026-07-10).
 
 [SRS: FR-01 through FR-14]
 

@@ -41,14 +41,13 @@ Hourly SQLite snapshots with GFS-lite time-based retention. Snapshots are create
 Snapshots are full SQLite files. To restore:
 
 ```bash
-# 1. Stop the MCP server (dashboard + any MCP host)
-cordenar-dashboard stop
+# 1. Stop the MCP server (Ctrl+C the dashboard + any MCP host)
 
 # 2. Copy the desired snapshot over the live DB
 cp ~/.cordenar/backups/cordenar-2026-08-21-*.db ~/.cordenar/synapses.db
 
 # 3. Restart
-cordenar-dashboard
+cordenar dashboard
 ```
 
 ## Troubleshooting

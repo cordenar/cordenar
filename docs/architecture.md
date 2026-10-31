@@ -123,7 +123,7 @@ Hourly timer / write-count threshold → doBackup →
 │                                             │
 │  npm install -g cordenar                    │
 │  ~/.nvm/.../bin/cordenar → index.js         │
-│  ~/.nvm/.../bin/cordenar-dashboard → dash.js│
+│  ~/.nvm/.../bin/cordenar-dashboard → dashboard.js│
 │                                             │
 │  ~/.cordenar/                               │
 │  ├── synapses.db          (SQLite)          │
